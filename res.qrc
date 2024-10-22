@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/pm2.5.png</file>
+        <file>res/air qulity.png</file>
+        <file>res/de.png</file>
+        <file>res/wind.png</file>
+        <file>res/sun.png</file>
+        <file>res/search.png</file>
+        <file>res/cloudy.png</file>
+        <file>res/rain.png</file>
+        <file>res/sunny.png</file>
+    </qresource>
+</RCC>
