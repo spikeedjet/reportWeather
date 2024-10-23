@@ -24,7 +24,7 @@ QT_BEGIN_NAMESPACE
 class Ui_Widget
 {
 public:
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_25;
     QWidget *widget01;
     QHBoxLayout *horizontalLayout_6;
@@ -43,7 +43,7 @@ public:
     QSpacerItem *horizontalSpacer;
     QWidget *widget03;
     QVBoxLayout *verticalLayout;
-    QLabel *label;
+    QLabel *labelAirTips;
     QWidget *widget0301;
     QGridLayout *gridLayout;
     QHBoxLayout *horizontalLayout;
@@ -91,23 +91,23 @@ public:
     QWidget *widget0402;
     QGridLayout *gridLayout_3;
     QVBoxLayout *verticalLayout_12;
-    QLabel *labelDay0_2;
-    QLabel *labelDate0_2;
+    QLabel *labelWeaPic0;
+    QLabel *labelWea0;
     QVBoxLayout *verticalLayout_13;
-    QLabel *labelDay0_3;
-    QLabel *labelDate0_3;
+    QLabel *labelWeaPic1;
+    QLabel *labelWea1;
     QVBoxLayout *verticalLayout_14;
-    QLabel *labelDay0_4;
-    QLabel *labelDate0_4;
+    QLabel *labelWeaPic3;
+    QLabel *labelWea2;
     QVBoxLayout *verticalLayout_15;
-    QLabel *labelDay0_5;
-    QLabel *labelDate0_5;
+    QLabel *labelWeaPic4;
+    QLabel *labelWea3;
     QVBoxLayout *verticalLayout_16;
-    QLabel *labelDay0_6;
-    QLabel *labelDate0_6;
+    QLabel *labelWeaPic5;
+    QLabel *labelWea4;
     QVBoxLayout *verticalLayout_17;
-    QLabel *labelDay0_7;
-    QLabel *labelDate0_7;
+    QLabel *labelWeaPic6;
+    QLabel *labelWea5;
     QWidget *widget0403;
     QHBoxLayout *horizontalLayout_7;
     QLabel *labelAirq0;
@@ -143,15 +143,15 @@ public:
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName("Widget");
-        Widget->resize(465, 863);
+        Widget->resize(479, 863);
         Widget->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 0, 0);"));
-        widget = new QWidget(Widget);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(9, 9, 451, 841));
-        verticalLayout_25 = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(Widget);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(9, 9, 464, 841));
+        verticalLayout_25 = new QVBoxLayout(layoutWidget);
         verticalLayout_25->setObjectName("verticalLayout_25");
         verticalLayout_25->setContentsMargins(0, 0, 0, 0);
-        widget01 = new QWidget(widget);
+        widget01 = new QWidget(layoutWidget);
         widget01->setObjectName("widget01");
         widget01->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         horizontalLayout_6 = new QHBoxLayout(widget01);
@@ -167,7 +167,7 @@ public:
 "     background: white;\n"
 "     selection-background-color: darkgray;\n"
 " }\n"
-""));
+"color: rgb(255, 255, 255);"));
 
         horizontalLayout_6->addWidget(lineEditCity);
 
@@ -192,7 +192,7 @@ public:
 
         verticalLayout_25->addWidget(widget01);
 
-        widget02 = new QWidget(widget);
+        widget02 = new QWidget(layoutWidget);
         widget02->setObjectName("widget02");
         horizontalLayout_5 = new QHBoxLayout(widget02);
         horizontalLayout_5->setSpacing(35);
@@ -247,16 +247,16 @@ public:
 
         verticalLayout_25->addWidget(widget02);
 
-        widget03 = new QWidget(widget);
+        widget03 = new QWidget(layoutWidget);
         widget03->setObjectName("widget03");
         widget03->setStyleSheet(QString::fromUtf8("color:rgb(230,230,230)"));
         verticalLayout = new QVBoxLayout(widget03);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, -1, 0, -1);
-        label = new QLabel(widget03);
-        label->setObjectName("label");
+        labelAirTips = new QLabel(widget03);
+        labelAirTips->setObjectName("labelAirTips");
 
-        verticalLayout->addWidget(label);
+        verticalLayout->addWidget(labelAirTips);
 
         widget0301 = new QWidget(widget03);
         widget0301->setObjectName("widget0301");
@@ -399,7 +399,7 @@ public:
 
         verticalLayout_25->addWidget(widget03);
 
-        widget04 = new QWidget(widget);
+        widget04 = new QWidget(layoutWidget);
         widget04->setObjectName("widget04");
         verticalLayout_24 = new QVBoxLayout(widget04);
         verticalLayout_24->setObjectName("verticalLayout_24");
@@ -589,32 +589,32 @@ public:
         verticalLayout_12 = new QVBoxLayout();
         verticalLayout_12->setSpacing(0);
         verticalLayout_12->setObjectName("verticalLayout_12");
-        labelDay0_2 = new QLabel(widget0402);
-        labelDay0_2->setObjectName("labelDay0_2");
-        labelDay0_2->setEnabled(true);
-        labelDay0_2->setMinimumSize(QSize(0, 0));
-        labelDay0_2->setMaximumSize(QSize(70, 50));
-        labelDay0_2->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
+        labelWeaPic0 = new QLabel(widget0402);
+        labelWeaPic0->setObjectName("labelWeaPic0");
+        labelWeaPic0->setEnabled(true);
+        labelWeaPic0->setMinimumSize(QSize(0, 0));
+        labelWeaPic0->setMaximumSize(QSize(70, 50));
+        labelWeaPic0->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
 "color: rgb(255, 255, 255);\n"
 "border-top-left-radius: 5px;\n"
 "border-top-right-radius: 5px;\n"
 "\n"
 ""));
-        labelDay0_2->setPixmap(QPixmap(QString::fromUtf8(":/res/cloudy.png")));
-        labelDay0_2->setScaledContents(true);
-        labelDay0_2->setAlignment(Qt::AlignBottom|Qt::AlignHCenter);
+        labelWeaPic0->setPixmap(QPixmap(QString::fromUtf8(":/res/cloudy.png")));
+        labelWeaPic0->setScaledContents(true);
+        labelWeaPic0->setAlignment(Qt::AlignBottom|Qt::AlignHCenter);
 
-        verticalLayout_12->addWidget(labelDay0_2);
+        verticalLayout_12->addWidget(labelWeaPic0);
 
-        labelDate0_2 = new QLabel(widget0402);
-        labelDate0_2->setObjectName("labelDate0_2");
-        labelDate0_2->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
+        labelWea0 = new QLabel(widget0402);
+        labelWea0->setObjectName("labelWea0");
+        labelWea0->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
 "color: rgb(255, 255, 255);\n"
 "border-bottom-left-radius: 5px;\n"
 "border-bottom-right-radius: 5px;"));
-        labelDate0_2->setAlignment(Qt::AlignCenter);
+        labelWea0->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_12->addWidget(labelDate0_2);
+        verticalLayout_12->addWidget(labelWea0);
 
 
         gridLayout_3->addLayout(verticalLayout_12, 0, 0, 1, 1);
@@ -622,30 +622,30 @@ public:
         verticalLayout_13 = new QVBoxLayout();
         verticalLayout_13->setSpacing(0);
         verticalLayout_13->setObjectName("verticalLayout_13");
-        labelDay0_3 = new QLabel(widget0402);
-        labelDay0_3->setObjectName("labelDay0_3");
-        labelDay0_3->setMaximumSize(QSize(70, 50));
-        labelDay0_3->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
+        labelWeaPic1 = new QLabel(widget0402);
+        labelWeaPic1->setObjectName("labelWeaPic1");
+        labelWeaPic1->setMaximumSize(QSize(70, 50));
+        labelWeaPic1->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
 "color: rgb(255, 255, 255);\n"
 "border-top-left-radius: 5px;\n"
 "border-top-right-radius: 5px;\n"
 "\n"
 ""));
-        labelDay0_3->setPixmap(QPixmap(QString::fromUtf8(":/res/cloudy.png")));
-        labelDay0_3->setScaledContents(true);
-        labelDay0_3->setAlignment(Qt::AlignBottom|Qt::AlignHCenter);
+        labelWeaPic1->setPixmap(QPixmap(QString::fromUtf8(":/res/cloudy.png")));
+        labelWeaPic1->setScaledContents(true);
+        labelWeaPic1->setAlignment(Qt::AlignBottom|Qt::AlignHCenter);
 
-        verticalLayout_13->addWidget(labelDay0_3);
+        verticalLayout_13->addWidget(labelWeaPic1);
 
-        labelDate0_3 = new QLabel(widget0402);
-        labelDate0_3->setObjectName("labelDate0_3");
-        labelDate0_3->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
+        labelWea1 = new QLabel(widget0402);
+        labelWea1->setObjectName("labelWea1");
+        labelWea1->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
 "color: rgb(255, 255, 255);\n"
 "border-bottom-left-radius: 5px;\n"
 "border-bottom-right-radius: 5px;"));
-        labelDate0_3->setAlignment(Qt::AlignCenter);
+        labelWea1->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_13->addWidget(labelDate0_3);
+        verticalLayout_13->addWidget(labelWea1);
 
 
         gridLayout_3->addLayout(verticalLayout_13, 0, 1, 1, 1);
@@ -653,30 +653,30 @@ public:
         verticalLayout_14 = new QVBoxLayout();
         verticalLayout_14->setSpacing(0);
         verticalLayout_14->setObjectName("verticalLayout_14");
-        labelDay0_4 = new QLabel(widget0402);
-        labelDay0_4->setObjectName("labelDay0_4");
-        labelDay0_4->setMaximumSize(QSize(70, 50));
-        labelDay0_4->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
+        labelWeaPic3 = new QLabel(widget0402);
+        labelWeaPic3->setObjectName("labelWeaPic3");
+        labelWeaPic3->setMaximumSize(QSize(70, 50));
+        labelWeaPic3->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
 "color: rgb(255, 255, 255);\n"
 "border-top-left-radius: 5px;\n"
 "border-top-right-radius: 5px;\n"
 "\n"
 ""));
-        labelDay0_4->setPixmap(QPixmap(QString::fromUtf8(":/res/cloudy.png")));
-        labelDay0_4->setScaledContents(true);
-        labelDay0_4->setAlignment(Qt::AlignBottom|Qt::AlignHCenter);
+        labelWeaPic3->setPixmap(QPixmap(QString::fromUtf8(":/res/cloudy.png")));
+        labelWeaPic3->setScaledContents(true);
+        labelWeaPic3->setAlignment(Qt::AlignBottom|Qt::AlignHCenter);
 
-        verticalLayout_14->addWidget(labelDay0_4);
+        verticalLayout_14->addWidget(labelWeaPic3);
 
-        labelDate0_4 = new QLabel(widget0402);
-        labelDate0_4->setObjectName("labelDate0_4");
-        labelDate0_4->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
+        labelWea2 = new QLabel(widget0402);
+        labelWea2->setObjectName("labelWea2");
+        labelWea2->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
 "color: rgb(255, 255, 255);\n"
 "border-bottom-left-radius: 5px;\n"
 "border-bottom-right-radius: 5px;"));
-        labelDate0_4->setAlignment(Qt::AlignCenter);
+        labelWea2->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_14->addWidget(labelDate0_4);
+        verticalLayout_14->addWidget(labelWea2);
 
 
         gridLayout_3->addLayout(verticalLayout_14, 0, 2, 1, 1);
@@ -684,30 +684,30 @@ public:
         verticalLayout_15 = new QVBoxLayout();
         verticalLayout_15->setSpacing(0);
         verticalLayout_15->setObjectName("verticalLayout_15");
-        labelDay0_5 = new QLabel(widget0402);
-        labelDay0_5->setObjectName("labelDay0_5");
-        labelDay0_5->setMaximumSize(QSize(70, 50));
-        labelDay0_5->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
+        labelWeaPic4 = new QLabel(widget0402);
+        labelWeaPic4->setObjectName("labelWeaPic4");
+        labelWeaPic4->setMaximumSize(QSize(70, 50));
+        labelWeaPic4->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
 "color: rgb(255, 255, 255);\n"
 "border-top-left-radius: 5px;\n"
 "border-top-right-radius: 5px;\n"
 "\n"
 ""));
-        labelDay0_5->setPixmap(QPixmap(QString::fromUtf8(":/res/cloudy.png")));
-        labelDay0_5->setScaledContents(true);
-        labelDay0_5->setAlignment(Qt::AlignBottom|Qt::AlignHCenter);
+        labelWeaPic4->setPixmap(QPixmap(QString::fromUtf8(":/res/cloudy.png")));
+        labelWeaPic4->setScaledContents(true);
+        labelWeaPic4->setAlignment(Qt::AlignBottom|Qt::AlignHCenter);
 
-        verticalLayout_15->addWidget(labelDay0_5);
+        verticalLayout_15->addWidget(labelWeaPic4);
 
-        labelDate0_5 = new QLabel(widget0402);
-        labelDate0_5->setObjectName("labelDate0_5");
-        labelDate0_5->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
+        labelWea3 = new QLabel(widget0402);
+        labelWea3->setObjectName("labelWea3");
+        labelWea3->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
 "color: rgb(255, 255, 255);\n"
 "border-bottom-left-radius: 5px;\n"
 "border-bottom-right-radius: 5px;"));
-        labelDate0_5->setAlignment(Qt::AlignCenter);
+        labelWea3->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_15->addWidget(labelDate0_5);
+        verticalLayout_15->addWidget(labelWea3);
 
 
         gridLayout_3->addLayout(verticalLayout_15, 0, 3, 1, 1);
@@ -715,30 +715,30 @@ public:
         verticalLayout_16 = new QVBoxLayout();
         verticalLayout_16->setSpacing(0);
         verticalLayout_16->setObjectName("verticalLayout_16");
-        labelDay0_6 = new QLabel(widget0402);
-        labelDay0_6->setObjectName("labelDay0_6");
-        labelDay0_6->setMaximumSize(QSize(70, 50));
-        labelDay0_6->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
+        labelWeaPic5 = new QLabel(widget0402);
+        labelWeaPic5->setObjectName("labelWeaPic5");
+        labelWeaPic5->setMaximumSize(QSize(70, 50));
+        labelWeaPic5->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
 "color: rgb(255, 255, 255);\n"
 "border-top-left-radius: 5px;\n"
 "border-top-right-radius: 5px;\n"
 "\n"
 ""));
-        labelDay0_6->setPixmap(QPixmap(QString::fromUtf8(":/res/sunny.png")));
-        labelDay0_6->setScaledContents(true);
-        labelDay0_6->setAlignment(Qt::AlignBottom|Qt::AlignHCenter);
+        labelWeaPic5->setPixmap(QPixmap(QString::fromUtf8(":/res/sunny.png")));
+        labelWeaPic5->setScaledContents(true);
+        labelWeaPic5->setAlignment(Qt::AlignBottom|Qt::AlignHCenter);
 
-        verticalLayout_16->addWidget(labelDay0_6);
+        verticalLayout_16->addWidget(labelWeaPic5);
 
-        labelDate0_6 = new QLabel(widget0402);
-        labelDate0_6->setObjectName("labelDate0_6");
-        labelDate0_6->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
+        labelWea4 = new QLabel(widget0402);
+        labelWea4->setObjectName("labelWea4");
+        labelWea4->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
 "color: rgb(255, 255, 255);\n"
 "border-bottom-left-radius: 5px;\n"
 "border-bottom-right-radius: 5px;"));
-        labelDate0_6->setAlignment(Qt::AlignCenter);
+        labelWea4->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_16->addWidget(labelDate0_6);
+        verticalLayout_16->addWidget(labelWea4);
 
 
         gridLayout_3->addLayout(verticalLayout_16, 0, 4, 1, 1);
@@ -746,30 +746,30 @@ public:
         verticalLayout_17 = new QVBoxLayout();
         verticalLayout_17->setSpacing(0);
         verticalLayout_17->setObjectName("verticalLayout_17");
-        labelDay0_7 = new QLabel(widget0402);
-        labelDay0_7->setObjectName("labelDay0_7");
-        labelDay0_7->setMaximumSize(QSize(70, 50));
-        labelDay0_7->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
+        labelWeaPic6 = new QLabel(widget0402);
+        labelWeaPic6->setObjectName("labelWeaPic6");
+        labelWeaPic6->setMaximumSize(QSize(70, 50));
+        labelWeaPic6->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
 "color: rgb(255, 255, 255);\n"
 "border-top-left-radius: 5px;\n"
 "border-top-right-radius: 5px;\n"
 "\n"
 ""));
-        labelDay0_7->setPixmap(QPixmap(QString::fromUtf8(":/res/cloudy.png")));
-        labelDay0_7->setScaledContents(true);
-        labelDay0_7->setAlignment(Qt::AlignBottom|Qt::AlignHCenter);
+        labelWeaPic6->setPixmap(QPixmap(QString::fromUtf8(":/res/cloudy.png")));
+        labelWeaPic6->setScaledContents(true);
+        labelWeaPic6->setAlignment(Qt::AlignBottom|Qt::AlignHCenter);
 
-        verticalLayout_17->addWidget(labelDay0_7);
+        verticalLayout_17->addWidget(labelWeaPic6);
 
-        labelDate0_7 = new QLabel(widget0402);
-        labelDate0_7->setObjectName("labelDate0_7");
-        labelDate0_7->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
+        labelWea5 = new QLabel(widget0402);
+        labelWea5->setObjectName("labelWea5");
+        labelWea5->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 119, 179);\n"
 "color: rgb(255, 255, 255);\n"
 "border-bottom-left-radius: 5px;\n"
 "border-bottom-right-radius: 5px;"));
-        labelDate0_7->setAlignment(Qt::AlignCenter);
+        labelWea5->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_17->addWidget(labelDate0_7);
+        verticalLayout_17->addWidget(labelWea5);
 
 
         gridLayout_3->addLayout(verticalLayout_17, 0, 5, 1, 1);
@@ -1066,6 +1066,7 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Widget", nullptr));
+        lineEditCity->setText(QString());
         lineEditCity->setPlaceholderText(QCoreApplication::translate("Widget", "\345\237\216\345\270\202", nullptr));
         labelSearch->setText(QString());
         labelCurrentDate->setText(QCoreApplication::translate("Widget", "2024/10/21          \346\230\237\346\234\237\344\270\200", nullptr));
@@ -1074,7 +1075,7 @@ public:
         labelCity->setText(QCoreApplication::translate("Widget", "\346\267\261\345\234\263\345\270\202    ", nullptr));
         labelTempRange->setText(QCoreApplication::translate("Widget", "20~26\342\204\203", nullptr));
         labelTemp->setText(QCoreApplication::translate("Widget", "23", nullptr));
-        label->setText(QCoreApplication::translate("Widget", "\346\204\237\345\206\222\346\214\207\346\225\260\357\274\232\345\220\204\347\261\273\344\272\272\347\276\244\345\217\257\350\207\252\347\224\261\346\264\273\345\212\250", nullptr));
+        labelAirTips->setText(QCoreApplication::translate("Widget", "\346\204\237\345\206\222\346\214\207\346\225\260\357\274\232\345\220\204\347\261\273\344\272\272\347\276\244\345\217\257\350\207\252\347\224\261\346\264\273\345\212\250", nullptr));
         labelFX->setText(QString());
         labelWindsType->setText(QCoreApplication::translate("Widget", "\344\270\234\345\215\227\351\243\216", nullptr));
         labelWindsType_data->setText(QCoreApplication::translate("Widget", "2\347\272\247", nullptr));
@@ -1099,18 +1100,18 @@ public:
         labelDate4->setText(QCoreApplication::translate("Widget", "10/20", nullptr));
         labelDay5->setText(QCoreApplication::translate("Widget", "\346\230\250\345\244\251", nullptr));
         labelDate5->setText(QCoreApplication::translate("Widget", "10/20", nullptr));
-        labelDay0_2->setText(QString());
-        labelDate0_2->setText(QCoreApplication::translate("Widget", "\345\244\232\344\272\221", nullptr));
-        labelDay0_3->setText(QString());
-        labelDate0_3->setText(QCoreApplication::translate("Widget", "\345\244\232\344\272\221", nullptr));
-        labelDay0_4->setText(QString());
-        labelDate0_4->setText(QCoreApplication::translate("Widget", "\345\244\232\344\272\221", nullptr));
-        labelDay0_5->setText(QString());
-        labelDate0_5->setText(QCoreApplication::translate("Widget", "\345\244\232\344\272\221", nullptr));
-        labelDay0_6->setText(QString());
-        labelDate0_6->setText(QCoreApplication::translate("Widget", "\346\231\264", nullptr));
-        labelDay0_7->setText(QString());
-        labelDate0_7->setText(QCoreApplication::translate("Widget", "\345\244\232\344\272\221", nullptr));
+        labelWeaPic0->setText(QString());
+        labelWea0->setText(QCoreApplication::translate("Widget", "\345\244\232\344\272\221", nullptr));
+        labelWeaPic1->setText(QString());
+        labelWea1->setText(QCoreApplication::translate("Widget", "\345\244\232\344\272\221", nullptr));
+        labelWeaPic3->setText(QString());
+        labelWea2->setText(QCoreApplication::translate("Widget", "\345\244\232\344\272\221", nullptr));
+        labelWeaPic4->setText(QString());
+        labelWea3->setText(QCoreApplication::translate("Widget", "\345\244\232\344\272\221", nullptr));
+        labelWeaPic5->setText(QString());
+        labelWea4->setText(QCoreApplication::translate("Widget", "\346\231\264", nullptr));
+        labelWeaPic6->setText(QString());
+        labelWea5->setText(QCoreApplication::translate("Widget", "\345\244\232\344\272\221", nullptr));
         labelAirq0->setText(QCoreApplication::translate("Widget", "\344\274\230", nullptr));
         labelAirq1->setText(QCoreApplication::translate("Widget", "\350\211\257", nullptr));
         labelAirq2->setText(QCoreApplication::translate("Widget", "\344\274\230", nullptr));

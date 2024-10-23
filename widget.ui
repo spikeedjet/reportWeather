@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>465</width>
+    <width>479</width>
     <height>863</height>
    </rect>
   </property>
@@ -16,12 +16,12 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(0, 0, 0);</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>9</x>
      <y>9</y>
-     <width>451</width>
+     <width>464</width>
      <height>841</height>
     </rect>
    </property>
@@ -51,7 +51,10 @@
      background: white;
      selection-background-color: darkgray;
  }
-</string>
+color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string/>
          </property>
          <property name="placeholderText">
           <string>城市</string>
@@ -224,7 +227,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="labelAirTips">
          <property name="text">
           <string>感冒指数：各类人群可自由活动</string>
          </property>
@@ -773,7 +776,7 @@ border-bottom-right-radius: 5px;</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="labelDay0_2">
+             <widget class="QLabel" name="labelWeaPic0">
               <property name="enabled">
                <bool>true</bool>
               </property>
@@ -812,7 +815,7 @@ border-top-right-radius: 5px;
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="labelDate0_2">
+             <widget class="QLabel" name="labelWea0">
               <property name="styleSheet">
                <string notr="true">background-color: rgb(0, 119, 179);
 color: rgb(255, 255, 255);
@@ -835,7 +838,7 @@ border-bottom-right-radius: 5px;</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="labelDay0_3">
+             <widget class="QLabel" name="labelWeaPic1">
               <property name="maximumSize">
                <size>
                 <width>70</width>
@@ -865,7 +868,7 @@ border-top-right-radius: 5px;
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="labelDate0_3">
+             <widget class="QLabel" name="labelWea1">
               <property name="styleSheet">
                <string notr="true">background-color: rgb(0, 119, 179);
 color: rgb(255, 255, 255);
@@ -888,7 +891,7 @@ border-bottom-right-radius: 5px;</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="labelDay0_4">
+             <widget class="QLabel" name="labelWeaPic3">
               <property name="maximumSize">
                <size>
                 <width>70</width>
@@ -918,7 +921,7 @@ border-top-right-radius: 5px;
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="labelDate0_4">
+             <widget class="QLabel" name="labelWea2">
               <property name="styleSheet">
                <string notr="true">background-color: rgb(0, 119, 179);
 color: rgb(255, 255, 255);
@@ -941,7 +944,7 @@ border-bottom-right-radius: 5px;</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="labelDay0_5">
+             <widget class="QLabel" name="labelWeaPic4">
               <property name="maximumSize">
                <size>
                 <width>70</width>
@@ -971,7 +974,7 @@ border-top-right-radius: 5px;
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="labelDate0_5">
+             <widget class="QLabel" name="labelWea3">
               <property name="styleSheet">
                <string notr="true">background-color: rgb(0, 119, 179);
 color: rgb(255, 255, 255);
@@ -994,7 +997,7 @@ border-bottom-right-radius: 5px;</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="labelDay0_6">
+             <widget class="QLabel" name="labelWeaPic5">
               <property name="maximumSize">
                <size>
                 <width>70</width>
@@ -1024,7 +1027,7 @@ border-top-right-radius: 5px;
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="labelDate0_6">
+             <widget class="QLabel" name="labelWea4">
               <property name="styleSheet">
                <string notr="true">background-color: rgb(0, 119, 179);
 color: rgb(255, 255, 255);
@@ -1047,7 +1050,7 @@ border-bottom-right-radius: 5px;</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="labelDay0_7">
+             <widget class="QLabel" name="labelWeaPic6">
               <property name="maximumSize">
                <size>
                 <width>70</width>
@@ -1077,7 +1080,7 @@ border-top-right-radius: 5px;
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="labelDate0_7">
+             <widget class="QLabel" name="labelWea5">
               <property name="styleSheet">
                <string notr="true">background-color: rgb(0, 119, 179);
 color: rgb(255, 255, 255);

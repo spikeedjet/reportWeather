@@ -9,5 +9,10 @@
         <file>res/cloudy.png</file>
         <file>res/rain.png</file>
         <file>res/sunny.png</file>
+        <file>res/Wea/cloudyToOvercast.png</file>
+        <file>res/Wea/overcast.png</file>
+        <file>res/Wea/rain.png</file>
+        <file>res/Wea/rainToSun.png</file>
+        <file>res/Wea/sun.png</file>
     </qresource>
 </RCC>

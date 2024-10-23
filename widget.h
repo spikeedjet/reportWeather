@@ -3,6 +3,9 @@
 
 #include "qnetworkreply.h"
 #include <QWidget>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,11 +24,27 @@ public:
     void slotReadyRead();
     void slotError();
     void slotSslErrors();
+    void parseWeatherJson(const QString &jsonString);
+    void updateUI();
 
-
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
 private:
     Ui::Widget *ui;
     QNetworkReply *reply;
+    QString date ;
+    QString week ;
+    QString wea ;
+    QString tem;
+    QString humidity;
+    void setAirQualityLabel(QLabel* label, const QString& airQuality);
+    void setWeaLabel(QLabel* label, const QString& airQuality);
+    QString getSearchCityName ();
+    QString api;
+    QNetworkAccessManager *manager;
+
+
+
 };
 #endif // WIDGET_H
