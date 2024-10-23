@@ -8,13 +8,15 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QMouseEvent>
+#include <QPainter>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
-    setFixedSize(465,863);
+    setFixedSize(459,863);
+    // ui->widget0404->setAttribute(Qt::WA_OpaquePaintEvent);
 
     ui->lineEditCity->setStyleSheet("color: white;");
 
@@ -27,10 +29,8 @@ Widget::Widget(QWidget *parent)
     connect(reply,&QNetworkReply::finished,
             this,&Widget::replyFinished);
 
-
     ui->labelSearch->installEventFilter(this);
-
-
+    ui->widget0404->installEventFilter(this); // 为 widget0404 安装事件过滤器
 
 
 
@@ -76,8 +76,16 @@ void Widget::parseWeatherJson(const QString &jsonString)
     QString city = jsonObj["city"].toString();
 
     // 解析天气数据数组
-    QJsonArray dataArray = jsonObj["data"].toArray();
+    dataArray = jsonObj["data"].toArray();
     if (!dataArray.isEmpty()) {
+
+        // qDebug()<<dataArray;
+        // 更新最高气温数据
+        updateMaxTemperatures();
+
+        // 触发重绘
+        update();
+
         QJsonObject todayWeather = dataArray[0].toObject();
 
         //part2
@@ -88,6 +96,7 @@ void Widget::parseWeatherJson(const QString &jsonString)
         humidity = todayWeather["humidity"].toString();
         QString temLow = todayWeather["tem2"].toString();
         QString temHigh = todayWeather["tem1"].toString();
+        QString airTips = todayWeather["air_tips"].toString();
 
         ui->labelCity->setText(city);
         ui->labelTemp->setText(tem);
@@ -95,6 +104,7 @@ void Widget::parseWeatherJson(const QString &jsonString)
         ui->labelHumidityData->setText(humidity);
         ui->labelCurrentDate->setText(date + "  " + week);
         ui->labelTempRange->setText(temLow+"~"+temHigh+"℃");
+        ui->labelAirTips->setText(airTips);
 
         //part3
         // Parse the "win" array
@@ -117,6 +127,10 @@ void Widget::parseWeatherJson(const QString &jsonString)
         QString airLevel  = todayWeather["air_level"].toString();
         ui->labelAirQualityData->setText(airLevel);
 
+
+
+
+
     }
 
     QJsonValue aqiValue = jsonObj["aqi"];
@@ -124,7 +138,6 @@ void Widget::parseWeatherJson(const QString &jsonString)
         QJsonObject aqiObject = aqiValue.toObject();
         QString pm25 = aqiObject["pm25"].toString();
         ui->labelPM25Data->setText(pm25);
-        qDebug() << "------------------------------------------------------------------------";
     } else {
         qDebug() << "AQI data is not in the expected format";
     }
@@ -154,14 +167,24 @@ void Widget::parseWeatherJson(const QString &jsonString)
             ui->labelWea0, ui->labelWea1, ui->labelWea2,
             ui->labelWea3, ui->labelWea4, ui->labelWea5
         };
-        QString Wea[] = {
+        QString wea[] = {
             todayWea, tomorrWea, tomorrowPlus1Wea,
             tomorrowPlus2Wea, tomorrowPlus3Wea, tomorrowPlus4Wea
         };
 
         for (int i = 0; i < 6; ++i) {
-            setWeaLabel(weaLabels[i], Wea[i]);
+            setWeaLabel(weaLabels[i], wea[i]);
         }
+
+        QLabel* weaPicLabel[] = {
+            ui->labelWeaPic0,ui->labelWeaPic1,ui->labelWeaPic2,
+            ui->labelWeaPic3,ui->labelWeaPic4,ui->labelWeaPic5,
+        };
+
+        for (int i = 0; i < 6; ++i) {
+            setWeaPic(weaPicLabel[i], wea[i]);
+        }
+
 
 
         //0403
@@ -190,6 +213,11 @@ void Widget::parseWeatherJson(const QString &jsonString)
 
 bool Widget::eventFilter(QObject *watched, QEvent *event)
 {
+    if (watched == ui->widget0404) {
+        if (event->type() == QEvent::Paint) {
+            showPaint();
+        }
+    }
     if (watched == ui->labelSearch && event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
         if (mouseEvent->button() == Qt::LeftButton) {
@@ -206,12 +234,33 @@ bool Widget::eventFilter(QObject *watched, QEvent *event)
             // Connect the new reply to the existing replyFinished slot
             connect(reply, &QNetworkReply::finished, this, &Widget::replyFinished);
 
-            qDebug() << "Requesting weather for city:" << city;
+            // qDebug() << "Requesting weather for city:" << city;
             return true; // Event was handled
         }
     }
     // Pass unhandled events to the base class
     return QWidget::eventFilter(watched, event);
+}
+
+
+
+void Widget::paintEvent(QPaintEvent *event)
+{
+    // QWidget::paintEvent(event);
+}
+
+void Widget::updateMaxTemperatures()
+{
+    maxTemperatures.clear();
+    // dataArray = QJsonDocument::fromJson(reply->readAll()).object()["data"].toArray();
+    // qDebug()<< dataArray;
+
+    for (int i = 0; i < qMin(6, dataArray.size()); ++i) {
+        QJsonObject dayWeather = dataArray[i].toObject();
+        int maxTemp = dayWeather["tem1"].toString().remove("℃").toInt();
+        maxTemperatures.append(maxTemp);
+    }
+    qDebug()<< maxTemperatures;
 }
 
 
@@ -227,17 +276,128 @@ void Widget::setAirQualityLabel(QLabel* label, const QString& airQuality) {
 }
 
 
-void Widget::setWeaLabel(QLabel* label, const QString& Wea) {
-    label->setText(Wea);
+void Widget::setWeaLabel(QLabel* label, const QString& wea) {
+    label->setText(wea);
     label->setStyleSheet("background-color: rgb(0, 119, 179);color: rgb(255, 255, 255);border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;");
 
-
 }
+
+
+
 
 QString Widget::getSearchCityName()
 {
     return ui->lineEditCity->displayText();
 }
+
+
+
+
+void Widget::setWeaPic(QLabel *weaPicLabel, const QString &wea)
+{
+    // Map weather descriptions to icon file names
+    QMap<QString, QString> weatherIcons;
+    weatherIcons["晴"] = ":/res/Wea/sun.png";
+    weatherIcons["多云"] = ":/res/Wea/cloudy.png";
+    weatherIcons["阴"] = ":/res/Wea/overcast.png";
+    weatherIcons["小雨"] = ":/res/Wea/rain.png";
+    weatherIcons["中雨"] = ":/res/Wea/rainy.png";
+    weatherIcons["大雨"] = ":/res/Wea/rainstorm.png";
+    weatherIcons["雷阵雨"] = ":/res/Wea/thunderShower.png";
+    weatherIcons["雪"] = ":/res/Wea/snow.png";
+    weatherIcons["多云转阴"] = ":/res/Wea/cloudyToOvercast.png";
+    weatherIcons["小雨转晴"] = ":/res/Wea/rainToSun.png";
+    // Add more mappings as needed
+
+    // Find the matching icon or use a default icon
+    QString iconPath = weatherIcons.value(wea);
+
+    // Load the icon
+    QPixmap icon(iconPath);
+    if (!icon.isNull()) {
+        // Scale the icon to 32x32 pixels
+        // icon = icon.scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+        // Set the icon and text
+        weaPicLabel->setPixmap(icon);
+    } else {
+        qDebug() << "Failed to load icon:" << iconPath;
+    }
+}
+
+void Widget::showPaint()
+{
+    QPainter painter(ui->widget0404);
+
+    if (maxTemperatures.isEmpty()) {
+        return;
+    }
+
+    if (!ui->widget0404) {
+        qDebug() << "widget0404 is null!";
+        return;
+    }
+
+
+
+    painter.setRenderHint(QPainter::Antialiasing);
+
+    // 设置绘图区域
+    int margin = 10; // 减小边距以适应小部件
+    int width = ui->widget0404->width() - 2 * margin; // 使用 widget0404 的宽度
+    int height = ui->widget0404->height() - 2 * margin; // 使用 widget0404 的高度
+    int bottom = ui->widget0404->height() - margin; // 使用 widget0404 的高度
+    int top = bottom - height;
+
+    // 找出最高和最低温度
+    int maxTemp = *std::max_element(maxTemperatures.begin(), maxTemperatures.end());
+    int minTemp = *std::min_element(maxTemperatures.begin(), maxTemperatures.end());
+
+    // 绘制坐标轴
+    painter.drawLine(margin, bottom, margin + width, bottom);
+    painter.drawLine(margin, bottom, margin, top);
+
+    // 绘制折线
+    QPen pen(Qt::black, 2); // 减小线条宽度以适应小部件
+    painter.setPen(pen);
+
+    if (maxTemperatures.size() < 2) {
+        return; // 如果没有足够的数据点，直接返回
+    }
+
+    int xStep = width / (maxTemperatures.size() - 1);
+    for (int i = 0; i < maxTemperatures.size() - 1; ++i) {
+        int x1 = margin + i * xStep;
+        int y1 = bottom - (maxTemperatures[i] - minTemp) * height / (maxTemp - minTemp);
+        int x2 = margin + (i + 1) * xStep;
+        int y2 = bottom - (maxTemperatures[i + 1] - minTemp) * height / (maxTemp - minTemp);
+
+        painter.drawLine(x1, y1, x2, y2);
+
+        // 绘制数据点
+        painter.setBrush(Qt::blue);
+        painter.drawEllipse(QPoint(x1, y1), 3, 3);
+    }
+
+    // 绘制最后一个数据点
+    painter.drawEllipse(QPoint(margin + width, bottom - (maxTemperatures.last() - minTemp) * height / (maxTemp - minTemp)), 3, 3);
+
+    // 绘制温度标签
+    painter.setPen(Qt::black);
+    for (int i = 0; i < maxTemperatures.size(); ++i) {
+        int x = margin + i * xStep;
+        int y = bottom - (maxTemperatures[i] - minTemp) * height / (maxTemp - minTemp)+3;
+        painter.drawText(QRect(x - 20, y - 20, 40, 20), Qt::AlignCenter, QString::number(maxTemperatures[i]) + "℃");
+    }
+
+    qDebug() << "绘制被调用";
+
+}
+
+
+
+
+
 
 
 

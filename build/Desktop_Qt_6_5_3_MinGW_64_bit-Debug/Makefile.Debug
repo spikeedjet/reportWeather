@@ -115,9 +115,14 @@ debug/qrc_res.cpp: ../../res.qrc \
 		../../res/cloudy.png \
 		../../res/Wea/rain.png \
 		../../res/Wea/overcast.png \
+		../../res/Wea/thunderShower.png \
+		../../res/Wea/rainy.png \
 		../../res/Wea/sun.png \
 		../../res/Wea/rainToSun.png \
-		../../res/Wea/cloudyToOvercast.png
+		../../res/Wea/cloudyToOvercast.png \
+		../../res/Wea/rainstorm.png \
+		../../res/Wea/cloudy.png \
+		../../res/Wea/snow.png
 	E:\Qt\6.5.3\mingw_64\bin\rcc.exe -name res --no-zstd ..\..\res.qrc -o debug\qrc_res.cpp
 
 compiler_moc_predefs_make_all: debug/moc_predefs.h
@@ -826,7 +831,8 @@ debug/widget.o: ../../widget.cpp ../../widget.h \
 		E:/Qt/6.5.3/mingw_64/include/QtWidgets/qdialog.h \
 		E:/Qt/6.5.3/mingw_64/include/QtNetwork/QNetworkReply \
 		E:/Qt/6.5.3/mingw_64/include/QtCore/QJsonArray \
-		E:/Qt/6.5.3/mingw_64/include/QtCore/qjsonarray.h
+		E:/Qt/6.5.3/mingw_64/include/QtCore/qjsonarray.h \
+		E:/Qt/6.5.3/mingw_64/include/QtGui/QMouseEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\widget.o ..\..\widget.cpp
 
 debug/qrc_res.o: debug/qrc_res.cpp 

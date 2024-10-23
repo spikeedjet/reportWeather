@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>479</width>
+    <width>459</width>
     <height>863</height>
    </rect>
   </property>
@@ -21,7 +21,7 @@
     <rect>
      <x>9</x>
      <y>9</y>
-     <width>464</width>
+     <width>441</width>
      <height>841</height>
     </rect>
    </property>
@@ -51,7 +51,7 @@
      background: white;
      selection-background-color: darkgray;
  }
-color: rgb(255, 255, 255);</string>
+color: white;</string>
          </property>
          <property name="text">
           <string/>
@@ -891,7 +891,7 @@ border-bottom-right-radius: 5px;</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="labelWeaPic3">
+             <widget class="QLabel" name="labelWeaPic2">
               <property name="maximumSize">
                <size>
                 <width>70</width>
@@ -944,7 +944,7 @@ border-bottom-right-radius: 5px;</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="labelWeaPic4">
+             <widget class="QLabel" name="labelWeaPic3">
               <property name="maximumSize">
                <size>
                 <width>70</width>
@@ -997,7 +997,7 @@ border-bottom-right-radius: 5px;</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="labelWeaPic5">
+             <widget class="QLabel" name="labelWeaPic4">
               <property name="maximumSize">
                <size>
                 <width>70</width>
@@ -1050,7 +1050,7 @@ border-bottom-right-radius: 5px;</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="labelWeaPic6">
+             <widget class="QLabel" name="labelWeaPic5">
               <property name="maximumSize">
                <size>
                 <width>70</width>
@@ -1228,14 +1228,8 @@ border-radius: 5px;
            <height>80</height>
           </size>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>80</height>
-          </size>
-         </property>
          <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
+          <cursorShape>ArrowCursor</cursorShape>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(143, 143, 143);

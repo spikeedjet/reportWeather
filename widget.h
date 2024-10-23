@@ -6,6 +6,10 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QLabel>
+#include <bits/concept_check.h>
+#include <QJsonArray>
+#include <qpainter.h>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,6 +33,10 @@ public:
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
+    void paintEvent(QPaintEvent *event) override;
+
+
+
 
 private:
     Ui::Widget *ui;
@@ -38,11 +46,18 @@ private:
     QString wea ;
     QString tem;
     QString humidity;
-    void setAirQualityLabel(QLabel* label, const QString& airQuality);
-    void setWeaLabel(QLabel* label, const QString& airQuality);
-    QString getSearchCityName ();
     QString api;
     QNetworkAccessManager *manager;
+    QVector<int> maxTemperatures; // 存储最高气温数据
+    QJsonArray dataArray; // 声明为类的成员变量
+    QPainter painter;
+
+    void updateMaxTemperatures(); // 更新最高气温数据
+    void setAirQualityLabel(QLabel* label, const QString& airQuality);
+    void setWeaLabel(QLabel* label, const QString& wea);
+    QString getSearchCityName ();
+    void setWeaPic(QLabel* weaPicLabel, const QString& wea);
+    void showPaint();
 
 
 

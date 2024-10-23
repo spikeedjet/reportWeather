@@ -14,5 +14,10 @@
         <file>res/Wea/rain.png</file>
         <file>res/Wea/rainToSun.png</file>
         <file>res/Wea/sun.png</file>
+        <file>res/Wea/cloudy.png</file>
+        <file>res/Wea/rainstorm.png</file>
+        <file>res/Wea/rainy.png</file>
+        <file>res/Wea/snow.png</file>
+        <file>res/Wea/thunderShower.png</file>
     </qresource>
 </RCC>
