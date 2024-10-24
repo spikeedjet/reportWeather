@@ -10,12 +10,15 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    test.cpp \
     widget.cpp
 
 HEADERS += \
+    test.h \
     widget.h
 
 FORMS += \
+    test.ui \
     widget.ui
 
 # Default rules for deployment.

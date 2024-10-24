@@ -15,6 +15,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -138,16 +139,17 @@ public:
     QVBoxLayout *verticalLayout_23;
     QLabel *labelDay0_13;
     QLabel *labelDate0_13;
+    QPushButton *pushButtonNewWin;
 
     void setupUi(QWidget *Widget)
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName("Widget");
-        Widget->resize(459, 863);
+        Widget->resize(488, 863);
         Widget->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 0, 0);"));
         layoutWidget = new QWidget(Widget);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(9, 9, 441, 841));
+        layoutWidget->setGeometry(QRect(9, 9, 464, 841));
         verticalLayout_25 = new QVBoxLayout(layoutWidget);
         verticalLayout_25->setObjectName("verticalLayout_25");
         verticalLayout_25->setContentsMargins(0, 0, 0, 0);
@@ -1056,6 +1058,10 @@ public:
         verticalLayout_25->setStretch(1, 2);
         verticalLayout_25->setStretch(2, 3);
         verticalLayout_25->setStretch(3, 10);
+        pushButtonNewWin = new QPushButton(Widget);
+        pushButtonNewWin->setObjectName("pushButtonNewWin");
+        pushButtonNewWin->setGeometry(QRect(550, 180, 75, 23));
+        pushButtonNewWin->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 0, 255);"));
 
         retranslateUi(Widget);
 
@@ -1087,11 +1093,11 @@ public:
         labelFX_3->setText(QString());
         labelAirQuality->setText(QCoreApplication::translate("Widget", "\347\251\272\346\260\224\350\264\250\351\207\217", nullptr));
         labelAirQualityData->setText(QCoreApplication::translate("Widget", "\344\274\230", nullptr));
-        labelDay0->setText(QCoreApplication::translate("Widget", "\346\230\250\345\244\251", nullptr));
+        labelDay0->setText(QCoreApplication::translate("Widget", "\344\273\212\345\244\251", nullptr));
         labelDate0->setText(QCoreApplication::translate("Widget", "10/20", nullptr));
-        labelDay1->setText(QCoreApplication::translate("Widget", "\346\230\250\345\244\251", nullptr));
+        labelDay1->setText(QCoreApplication::translate("Widget", "\346\230\216\345\244\251", nullptr));
         labelDate1->setText(QCoreApplication::translate("Widget", "10/20", nullptr));
-        labelDay2->setText(QCoreApplication::translate("Widget", "\346\230\250\345\244\251", nullptr));
+        labelDay2->setText(QCoreApplication::translate("Widget", "\345\220\216\345\244\251", nullptr));
         labelDate2->setText(QCoreApplication::translate("Widget", "10/20", nullptr));
         labelDay3->setText(QCoreApplication::translate("Widget", "\346\230\250\345\244\251", nullptr));
         labelDate3->setText(QCoreApplication::translate("Widget", "10/20", nullptr));
@@ -1129,6 +1135,7 @@ public:
         labelDate0_12->setText(QCoreApplication::translate("Widget", "2\347\272\247", nullptr));
         labelDay0_13->setText(QCoreApplication::translate("Widget", "\344\270\234\345\215\227\351\243\216", nullptr));
         labelDate0_13->setText(QCoreApplication::translate("Widget", "2\347\272\247", nullptr));
+        pushButtonNewWin->setText(QCoreApplication::translate("Widget", "PushButton", nullptr));
     } // retranslateUi
 
 };

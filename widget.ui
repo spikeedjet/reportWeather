@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>459</width>
+    <width>488</width>
     <height>863</height>
    </rect>
   </property>
@@ -21,7 +21,7 @@
     <rect>
      <x>9</x>
      <y>9</y>
-     <width>441</width>
+     <width>464</width>
      <height>841</height>
     </rect>
    </property>
@@ -522,7 +522,7 @@ border-top-right-radius: 5px;
 </string>
               </property>
               <property name="text">
-               <string>昨天</string>
+               <string>今天</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignBottom|Qt::AlignHCenter</set>
@@ -563,7 +563,7 @@ border-top-right-radius: 5px;
 </string>
               </property>
               <property name="text">
-               <string>昨天</string>
+               <string>明天</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignBottom|Qt::AlignHCenter</set>
@@ -604,7 +604,7 @@ border-top-right-radius: 5px;
 </string>
               </property>
               <property name="text">
-               <string>昨天</string>
+               <string>后天</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignBottom|Qt::AlignHCenter</set>
@@ -1543,6 +1543,22 @@ border-bottom-right-radius: 5px;</string>
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="pushButtonNewWin">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>180</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 0, 255);</string>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
   </widget>
  </widget>
  <resources>

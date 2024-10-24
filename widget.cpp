@@ -1,5 +1,6 @@
 ﻿#include "widget.h"
 #include "ui_widget.h"
+#include "test.cpp"
 
 #include <QMessageBox>
 #include <QNetworkAccessManager>
@@ -15,7 +16,7 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
-    setFixedSize(459,863);
+    // setFixedSize(459,863);
     // ui->widget0404->setAttribute(Qt::WA_OpaquePaintEvent);
 
     ui->lineEditCity->setStyleSheet("color: white;");
@@ -31,6 +32,9 @@ Widget::Widget(QWidget *parent)
 
     ui->labelSearch->installEventFilter(this);
     ui->widget0404->installEventFilter(this); // 为 widget0404 安装事件过滤器
+    ui->widget0405->installEventFilter(this);
+
+    connect(ui->pushButtonNewWin, &QAbstractButton::clicked, this, &Widget::showTestWin);
 
 
 
@@ -82,6 +86,8 @@ void Widget::parseWeatherJson(const QString &jsonString)
         // qDebug()<<dataArray;
         // 更新最高气温数据
         updateMaxTemperatures();
+
+        updateMinTemperatures();
 
         // 触发重绘
         update();
@@ -148,12 +154,12 @@ void Widget::parseWeatherJson(const QString &jsonString)
 
     //获取未来6天的天气质量
     if (!dataArray.isEmpty()) {
-        QJsonObject todayWeather = dataArray[0].toObject();
-        QJsonObject tomorrowWeather = dataArray[1].toObject();
-        QJsonObject tomorrowPlus1Weather = dataArray[2].toObject();
-        QJsonObject tomorrowPlus2Weather = dataArray[3].toObject();
-        QJsonObject tomorrowPlus3Weather = dataArray[4].toObject();
-        QJsonObject tomorrowPlus4Weather = dataArray[5].toObject();
+        todayWeather = dataArray[0].toObject();
+        tomorrowWeather = dataArray[1].toObject();
+        tomorrowPlus1Weather = dataArray[2].toObject();
+        tomorrowPlus2Weather = dataArray[3].toObject();
+        tomorrowPlus3Weather = dataArray[4].toObject();
+        tomorrowPlus4Weather = dataArray[5].toObject();
 
         //0402
         QString todayWea = todayWeather["wea"].toString();
@@ -208,6 +214,10 @@ void Widget::parseWeatherJson(const QString &jsonString)
             setAirQualityLabel(airQualityLabels[i], airQualities[i]);
         }
 
+        //0401
+        showDateWidget0401();
+
+
     }
 }
 
@@ -215,9 +225,16 @@ bool Widget::eventFilter(QObject *watched, QEvent *event)
 {
     if (watched == ui->widget0404) {
         if (event->type() == QEvent::Paint) {
-            showPaint();
+            drawMaxTemp();
         }
     }
+
+    if (watched ==ui->widget0405){
+        if (event->type() == QEvent::Paint){
+            drawMinTemp();
+        }
+    }
+
     if (watched == ui->labelSearch && event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
         if (mouseEvent->button() == Qt::LeftButton) {
@@ -246,6 +263,7 @@ bool Widget::eventFilter(QObject *watched, QEvent *event)
 
 void Widget::paintEvent(QPaintEvent *event)
 {
+    // QAnyStringView::Unused event;
     // QWidget::paintEvent(event);
 }
 
@@ -261,6 +279,18 @@ void Widget::updateMaxTemperatures()
         maxTemperatures.append(maxTemp);
     }
     qDebug()<< maxTemperatures;
+}
+
+void Widget::updateMinTemperatures()
+{
+    minTemperatures.clear();
+
+    for (int i = 0; i < qMin(6, dataArray.size()); i++){
+        QJsonObject dayWeather = dataArray[i].toObject();
+        int minTemp = dayWeather["tem2"].toString().remove("℃").toInt();
+        minTemperatures.append(minTemp);
+    }
+
 }
 
 
@@ -325,7 +355,7 @@ void Widget::setWeaPic(QLabel *weaPicLabel, const QString &wea)
     }
 }
 
-void Widget::showPaint()
+void Widget::drawMaxTemp()
 {
     QPainter painter(ui->widget0404);
 
@@ -343,22 +373,22 @@ void Widget::showPaint()
     painter.setRenderHint(QPainter::Antialiasing);
 
     // 设置绘图区域
-    int margin = 10; // 减小边距以适应小部件
+    int margin = 20; // 减小边距以适应小部件
     int width = ui->widget0404->width() - 2 * margin; // 使用 widget0404 的宽度
     int height = ui->widget0404->height() - 2 * margin; // 使用 widget0404 的高度
     int bottom = ui->widget0404->height() - margin; // 使用 widget0404 的高度
-    int top = bottom - height;
+    // int top = bottom - height;
 
     // 找出最高和最低温度
     int maxTemp = *std::max_element(maxTemperatures.begin(), maxTemperatures.end());
     int minTemp = *std::min_element(maxTemperatures.begin(), maxTemperatures.end());
 
-    // 绘制坐标轴
-    painter.drawLine(margin, bottom, margin + width, bottom);
-    painter.drawLine(margin, bottom, margin, top);
+    // // 绘制坐标轴
+    // painter.drawLine(margin, bottom, margin + width, bottom);
+    // painter.drawLine(margin, bottom, margin, top);
 
     // 绘制折线
-    QPen pen(Qt::black, 2); // 减小线条宽度以适应小部件
+    QPen pen(QColor(255, 255, 224), 2); // 设置为淡黄色
     painter.setPen(pen);
 
     if (maxTemperatures.size() < 2) {
@@ -386,13 +416,119 @@ void Widget::showPaint()
     painter.setPen(Qt::black);
     for (int i = 0; i < maxTemperatures.size(); ++i) {
         int x = margin + i * xStep;
-        int y = bottom - (maxTemperatures[i] - minTemp) * height / (maxTemp - minTemp)+3;
+        int y = bottom - (maxTemperatures[i] - minTemp) * height / (maxTemp - minTemp);
+        painter.setPen(QColor(255, 255, 224));
         painter.drawText(QRect(x - 20, y - 20, 40, 20), Qt::AlignCenter, QString::number(maxTemperatures[i]) + "℃");
     }
 
-    qDebug() << "绘制被调用";
+    // qDebug() << "绘制被调用";
 
 }
+
+void Widget::drawMinTemp()
+{
+    QPainter painter(ui->widget0405);
+
+    if (minTemperatures.isEmpty()){
+        return;
+    }
+
+    painter.setRenderHint(QPainter::Antialiasing);
+
+    int margin = 20;
+    int width = ui->widget0405->width() - 2 * margin;
+    int height = ui->widget0405->height() - 2 * margin; // 使用 widget0404 的高度
+    int bottom = ui->widget0405->height() - margin; // 使用 widget0404 的高度
+    // int top = bottom - height;
+
+    int maxTemp = *std::max_element(minTemperatures.begin(),minTemperatures.end());
+    int minTemp = *std::min_element(minTemperatures.begin(), minTemperatures.end());
+
+    // 绘制坐标轴
+    // painter.drawLine(margin, bottom, margin + width, bottom);
+    // painter.drawLine(margin, bottom, margin, top);
+
+
+    // 绘制折线
+    QPen pen(QColor(144, 238, 144), 2); // 设置为淡绿色
+    painter.setPen(pen);
+
+    if (minTemperatures.size() < 2) {
+        return; // 如果没有足够的数据点，直接返回
+    }
+
+    int xStep = width / (minTemperatures.size() - 1);
+    for (int i = 0; i < minTemperatures.size() - 1; ++i) {
+        int x1 = margin + i * xStep;
+        int y1 = bottom - (minTemperatures[i] - minTemp) * height / (maxTemp - minTemp);
+        int x2 = margin + (i + 1) * xStep;
+        int y2 = bottom - (minTemperatures[i + 1] - minTemp) * height / (maxTemp - minTemp);
+
+        painter.drawLine(x1, y1, x2, y2);
+
+        // 绘制数据点
+        painter.setBrush(Qt::blue);
+        painter.drawEllipse(QPoint(x1, y1), 3, 3);
+    }
+
+    // 绘制最后一个数据点
+    painter.drawEllipse(QPoint(margin + width, bottom - (minTemperatures.last() - minTemp) * height / (maxTemp - minTemp)), 3, 3);
+
+    // 绘制温度标签
+    painter.setPen(Qt::black);
+    for (int i = 0; i < minTemperatures.size(); ++i) {
+        int x = margin + i * xStep;
+        int y = bottom - (minTemperatures[i] - minTemp) * height / (maxTemp - minTemp);
+        painter.setPen(QColor(144, 238, 144)); // Set pen color to light green
+        painter.drawText(QRect(x - 20, y - 20, 40, 20), Qt::AlignCenter, QString::number(minTemperatures[i]) + "℃");
+    }
+
+
+
+}
+
+void Widget::showTestWin()
+{
+    // qDebug()<< "show test win";
+    Test *test = new Test;
+    test->show();
+
+}
+
+void Widget::showDateWidget0401()
+{
+    if (!dataArray.isEmpty()){
+
+        //day
+        QString tomorrowPlus2Week = tomorrowPlus2Weather["week"].toString();
+        QString tomorrowPlus3Week = tomorrowPlus3Weather["week"].toString();
+        QString tomorrowPlus4Week = tomorrowPlus4Weather["week"].toString();
+
+        ui->labelDay3->setText(tomorrowPlus2Week);
+        ui->labelDay4->setText(tomorrowPlus3Week);
+        ui->labelDay5->setText(tomorrowPlus4Week);
+
+
+        //date
+        QString date0 = todayWeather["date"].toString();
+        QString date1 = tomorrowWeather["date"].toString();
+        QString date2 = tomorrowPlus1Weather["date"].toString();
+        QString date3 = tomorrowPlus2Weather["date"].toString();
+        QString date4 = tomorrowPlus3Weather["date"].toString();
+        QString date5 = tomorrowPlus4Weather["date"].toString();
+
+        ui->labelDate0->setText(date0.mid(5,5));
+        ui->labelDate1->setText(date1.mid(5,5));
+        ui->labelDate2->setText(date2.mid(5,5));
+        ui->labelDate3->setText(date3.mid(5,5));
+        ui->labelDate4->setText(date4.mid(5,5));
+        ui->labelDate5->setText(date5.mid(5,5));
+
+
+
+    }
+}
+
 
 
 

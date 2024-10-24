@@ -49,16 +49,26 @@ private:
     QString api;
     QNetworkAccessManager *manager;
     QVector<int> maxTemperatures; // 存储最高气温数据
+    QVector<int> minTemperatures;
     QJsonArray dataArray; // 声明为类的成员变量
     QPainter painter;
+    QJsonObject todayWeather ;
+    QJsonObject tomorrowWeather ;
+    QJsonObject tomorrowPlus1Weather;
+    QJsonObject tomorrowPlus2Weather;
+    QJsonObject tomorrowPlus3Weather ;
+    QJsonObject tomorrowPlus4Weather;
 
     void updateMaxTemperatures(); // 更新最高气温数据
+    void updateMinTemperatures();
     void setAirQualityLabel(QLabel* label, const QString& airQuality);
     void setWeaLabel(QLabel* label, const QString& wea);
     QString getSearchCityName ();
     void setWeaPic(QLabel* weaPicLabel, const QString& wea);
-    void showPaint();
-
+    void drawMaxTemp();
+    void drawMinTemp();
+    void showTestWin();
+    void showDateWidget0401();
 
 
 };
