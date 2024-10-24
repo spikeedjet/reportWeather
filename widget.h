@@ -35,9 +35,6 @@ protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
     void paintEvent(QPaintEvent *event) override;
 
-
-
-
 private:
     Ui::Widget *ui;
     QNetworkReply *reply;
@@ -58,6 +55,7 @@ private:
     QJsonObject tomorrowPlus2Weather;
     QJsonObject tomorrowPlus3Weather ;
     QJsonObject tomorrowPlus4Weather;
+    QMap<QString, QString> weatherIcons;
 
     void updateMaxTemperatures(); // 更新最高气温数据
     void updateMinTemperatures();
@@ -69,7 +67,8 @@ private:
     void drawMinTemp();
     void showTestWin();
     void showDateWidget0401();
-
+    void fetchWeatherData();
+    void initializeWeatherIcons();
 
 };
 #endif // WIDGET_H

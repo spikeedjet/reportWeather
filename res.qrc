@@ -19,5 +19,7 @@
         <file>res/Wea/rainy.png</file>
         <file>res/Wea/snow.png</file>
         <file>res/Wea/thunderShower.png</file>
+        <file>res/Wea/rianToCloudy.png</file>
+        <file>logo.ico</file>
     </qresource>
 </RCC>

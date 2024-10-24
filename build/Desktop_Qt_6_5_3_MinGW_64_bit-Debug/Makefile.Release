@@ -121,6 +121,7 @@ release/qrc_res.cpp: ../../res.qrc \
 		../../res/Wea/thunderShower.png \
 		../../res/Wea/rainy.png \
 		../../res/Wea/sun.png \
+		../../res/Wea/rianToCloudy.png \
 		../../res/Wea/rainToSun.png \
 		../../res/Wea/cloudyToOvercast.png \
 		../../res/Wea/rainstorm.png \
@@ -1006,14 +1007,13 @@ release/widget.o: ../../widget.cpp ../../widget.h \
 		E:/Qt/6.5.3/mingw_64/include/QtWidgets/qlineedit.h \
 		E:/Qt/6.5.3/mingw_64/include/QtGui/qtextcursor.h \
 		E:/Qt/6.5.3/mingw_64/include/QtGui/qtextformat.h \
-		E:/Qt/6.5.3/mingw_64/include/QtWidgets/QPushButton \
-		E:/Qt/6.5.3/mingw_64/include/QtWidgets/qpushbutton.h \
-		E:/Qt/6.5.3/mingw_64/include/QtWidgets/qabstractbutton.h \
 		E:/Qt/6.5.3/mingw_64/include/QtWidgets/QSpacerItem \
 		E:/Qt/6.5.3/mingw_64/include/QtWidgets/QVBoxLayout \
 		../../test.cpp \
 		../../test.h \
 		ui_test.h \
+		E:/Qt/6.5.3/mingw_64/include/QtWidgets/QCalendarWidget \
+		E:/Qt/6.5.3/mingw_64/include/QtWidgets/qcalendarwidget.h \
 		E:/Qt/6.5.3/mingw_64/include/QtWidgets/QMessageBox \
 		E:/Qt/6.5.3/mingw_64/include/QtWidgets/qmessagebox.h \
 		E:/Qt/6.5.3/mingw_64/include/QtWidgets/qdialog.h \
